@@ -12,10 +12,12 @@ import escapism
 
 # Only use syntax features supported by Docker 17.09
 TEMPLATE = r"""
-FROM buildpack-deps:bionic
+FROM nvidia/cuda:11.2.2-devel-ubuntu18.04
 
 # Avoid prompts from apt
 ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y wget git git-lfs
 
 # Set up locales properly
 RUN apt-get -qq update && \
